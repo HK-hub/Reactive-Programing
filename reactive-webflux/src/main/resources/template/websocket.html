@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+</head>
+<body>
+<input type="text" id="sent" onchange="test()" placeholder="请输入信息。。。。">
+<br>
+<br>
+<input type="text" id="message" style="width: 800px;height: 50px;">
+
+<script>
+    let websocket = new WebSocket("ws://127.0.0.1:8888/websocket/token_112255");
+    websocket.onopen = function () {
+        console.log("已经与服务器建立连接。。。。。");
+    };
+    websocket.onmessage = function (map) {
+        document.querySelector("#message").value = map.data;
+    };
+
+    function test() {
+        let value = document.querySelector("#sent").value;
+        websocket.send(value);
+    }
+</script>
+</body>
+</html>
