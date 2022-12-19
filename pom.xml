@@ -11,6 +11,7 @@
     <modules>
         <module>reactive-java</module>
         <module>reactive-webflux</module>
+        <module>reactive-nio</module>
     </modules>
 
     <properties>
@@ -26,6 +27,16 @@
                 <artifactId>lombok</artifactId>
                 <version>RELEASE</version>
                 <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>31.1-jre</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>2.8.9</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
