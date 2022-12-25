@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="reactive-webflux" />
         <module name="reactive-nio" />
+        <module name="reactive-netty" />
         <module name="reactive-java" />
       </profile>
     </annotationProcessing>

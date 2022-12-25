@@ -12,6 +12,7 @@
         <module>reactive-java</module>
         <module>reactive-webflux</module>
         <module>reactive-nio</module>
+        <module>reactive-netty</module>
     </modules>
 
     <properties>
