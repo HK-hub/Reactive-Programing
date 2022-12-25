@@ -35,6 +35,10 @@
             <artifactId>netty-all</artifactId>
             <version>4.1.75.Final</version>
         </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
