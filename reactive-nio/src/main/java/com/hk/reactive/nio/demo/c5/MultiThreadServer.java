@@ -10,6 +10,9 @@ import java.nio.channels.*;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.concurrent.atomic.LongAdder;
 
 /**
  * @author : HK意境
@@ -37,9 +40,11 @@ public class MultiThreadServer {
         serverSocketChannel.bind(new InetSocketAddress("localhost", 8080));
 
         // 创建固定数量的 worker, 并初始化
-        Worker worker = new Worker("worker-0");
-        // worker.register();
-
+        Worker[] workers = new Worker[Runtime.getRuntime().availableProcessors()];
+        for (int i = 0; i < workers.length; i++) {
+            workers[i] = new Worker("workers-" + i);
+        }
+        AtomicInteger index = new AtomicInteger(0);
 
         while (true) {
             boss.select();
@@ -55,7 +60,8 @@ public class MultiThreadServer {
                     System.out.println("建立连接成功：" + clientSocket);
                     // 关联selector
                     log.info("before register: {}", clientSocket.getRemoteAddress());
-                    worker.register(clientSocket);
+                    // 轮询进行注册
+                    workers[index.incrementAndGet() % workers.length].register(clientSocket);
                     log.info("after register: {}", clientSocket.getRemoteAddress());
                 }
             }
